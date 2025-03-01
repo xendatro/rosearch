@@ -15,11 +15,16 @@ let roleSubsStrings = {
     Owner: "owner",
     Founder: "founder",
     Creator: "creator",
+    CEO: "ceo",
+    CCO: "cco",
     Director: "director",
     Leader: "lead",
+    Chairman: "chairman",
     Manager: "manage",
+    Overseer: "overseer",
     Marketing: "marketing",
     Analytics: "analytic",
+    Team: "team",
     Engineer: "engineer",
     Developer: "dev",
     Designer: "design",
@@ -31,8 +36,12 @@ let roleSubsStrings = {
     GFX: "gfx",
     UI: "ui",
     Artist: "art",
-    Contributor: "contr",
+    Contributor: "contrib",
     "Voice Actor": "voice",
+    Helper: "help",
+    Investor: "invest",
+    Translator: "translat",
+    Partner: "partner"
 }
 
 
@@ -41,7 +50,6 @@ function isValidGroup(group, criteria, displayName, username) {
     if (group.rankMemberCount >= 100) return false
     if (group.userRank >= criteria.MinRank) return true
     if (criteria.DisplayNameAllowed) {
-
         if (displayName === userRole || username === userRole) return true
     }
     let arr = Object.keys(roleSubsStrings).filter((role) => {
@@ -107,9 +115,13 @@ function Profile(props) {
             Owner: true,
             Founder: true,
             Creator: true,
+            CEO: true,
+            CCO: true,
             Director: true,
             Leader: true,
+            Chairman: true,
             Manager: true,
+            Overseer: true,
             Marketing: true,
             Analytics: true,
             Engineer: true,
@@ -124,11 +136,18 @@ function Profile(props) {
             UI: true,
             Artist: true,
             Contributor: true,
-            "Voice Actor": true
+            "Voice Actor": true,
+            Helper: true,
+            Investor: true,
+            Partner: true,
+            Team: true,
+            Translator: true
         },
         DisplayNameAllowed: true,
         MinRank: 254
     })
+
+    console.log(data)
 
     useEffect(() => {
         fetch(`https://rosearch.batchfile1.workers.dev/?username=${username}`)
